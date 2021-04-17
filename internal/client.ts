@@ -17,14 +17,12 @@ class MockClient extends DefaultClient {
                 question: {
                     id: "",
                     text: "What gets better with age?",
-                    deck: "",
                 },
                 answers: [
-                    {id: "1", text: "Daddy's credit card.", deck: ""},
-                    {id: "2", text: "Drinking alone.", deck: ""},
-                    {id: "3", text: "The glass ceiling.", deck: ""},
-                    {id: "4", text: "A lifetime of sadness.", deck: ""},
-                    {id: "5", text: "A PowerPoint presentation.", deck: ""},
+                    {id: "2", text: "Drinking alone."},
+                    {id: "3", text: "The glass ceiling."},
+                    {id: "4", text: "A lifetime of sadness."},
+                    {id: "5", text: "A PowerPoint presentation."},
                 ],
             };
             const token = jwt.sign(mockGame, "-");

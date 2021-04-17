@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "parcel build index.html -d .build --no-source-maps",
-    "dev": "parcel -p 3113 -d .dist index.html",
+    "dev": "parcel -d .dist index.html",
     "test": "run-s fmt build",
     "fmt": "prettier --list-different --write --ignore-path .gitignore \"**/*.{js,ts,tsx}\""
   },

@@ -1,9 +1,6 @@
-export type IDeck = "mini" | "nsfw";
-
 export interface ICard {
     id: string;
     text: string;
-    deck: string;
 }
 
 export interface IGameToken {

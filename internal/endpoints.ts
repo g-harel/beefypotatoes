@@ -3,17 +3,12 @@ import {Endpoint} from "rickety";
 import {ClientRequest, ClientResponse} from "rickety/client";
 
 import BaseClient from "./client";
-import {IGameResult, IGameSubmit, IGameToken, IDeck} from "./types";
+import {IGameResult, IGameSubmit, IGameToken} from "./types";
 
 class CreateGameClient extends BaseClient {
     async send(request: ClientRequest): Promise<ClientResponse> {
-        // Parse and remove body from the request.
-        // GET requests cannot have a body.
-        const requestBody: {deck: IDeck} = JSON.parse(request.body);
-        delete request.body;
-
-        // Add the deck selection as a query parameter in the request url.
-        request.url += `?deck=${requestBody.deck}`;
+        // GET requests should not have a body.
+        request.body = "";
 
         // Send modified request with parent client.
         const response = await super.send(request);
@@ -43,7 +38,7 @@ class SubmitGameClient extends BaseClient {
     }
 }
 
-export const CreateGame = new Endpoint<{deck: IDeck}, IGameToken>({
+export const CreateGame = new Endpoint<{}, IGameToken>({
     client: new CreateGameClient(),
     method: "GET",
     path: "/api/game",

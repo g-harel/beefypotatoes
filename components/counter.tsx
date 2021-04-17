@@ -15,7 +15,7 @@ export const Counter: React.FunctionComponent<IProps> = (props) => {
         // Update current value to be closer to target.
         // Delay is increased as current value approaches target.
         const proximity = Math.pow(1 - Math.abs(target - current) / 100, 4);
-        setTimeout(() => setCurrent(current + increment), 200 * proximity);
+        setTimeout(() => setCurrent(current + increment), 120 * proximity);
     } else {
         if (props.callback) {
             props.callback();

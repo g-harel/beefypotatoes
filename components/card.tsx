@@ -25,10 +25,6 @@ const rotate = (angle: number = 0, bounce: number = 0) => {
     return `rotate(${angle}deg)`;
 };
 
-const Wrapper = styled.div`
-    padding: 1.4rem;
-`;
-
 const Base = styled.div<IBaseProps>`
     border-radius: 0.6rem;
     font-size: 0.9rem;
@@ -49,20 +45,6 @@ const Base = styled.div<IBaseProps>`
 // Parent of both "Black" and "White" together.
 const Solid = styled(Base)<IBaseProps>`
     cursor: pointer;
-
-    &:hover {
-        ${({x, y, angle}) => css`
-            transform: scale(1.01) ${rotate(angle, 0.5)}
-                ${translate(x, (y || 0) - 0.2)};
-        `}
-    }
-
-    &:active {
-        /* Remove hover state's scale transform. */
-        ${({x, y, angle}) => css`
-            transform: ${rotate(angle, 0.5)} ${translate(x, y)};
-        `}
-    }
 `;
 
 const Black = styled(Solid)`
@@ -82,12 +64,32 @@ const Shadow = styled(Base)`
 
 const Outline = styled(Base)`
     border: 0.1rem dashed #fff;
-    opacity: 0.4;
+    opacity: 0.1;
     transform: scale(1.02) rotate(0);
 `;
 
 const Collapse = styled.div`
     height: 0;
+`;
+
+const Wrapper = styled.div<IBaseProps>`
+    padding: 1.4rem;
+
+    &:hover:not(:active) {
+        ${Solid} {
+            ${({x, y, angle}) => css`
+                transform: scale(1.01) ${rotate(angle, 0.5)}
+                    ${translate(x, (y || 0) - 0.2)};
+            `}
+        }
+
+        ${Shadow} {
+            ${({x, y, angle}) => css`
+                transform: scale(1.02) ${rotate(angle, 0.5)}
+                    ${translate((x || 0) - 0.85, (y || 0) + 0.55)};
+            `}
+        }
+    }
 `;
 
 export const Card: React.FunctionComponent<IProps> = (props) => {
@@ -108,7 +110,7 @@ export const Card: React.FunctionComponent<IProps> = (props) => {
     }
 
     return (
-        <Wrapper>
+        <Wrapper angle={angle}>
             <Collapse>
                 <Shadow angle={angle} x={-0.8} y={0.5} />
             </Collapse>

@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import ReactDOM from "react-dom";
-import {createGlobalStyle} from "styled-components";
+import styled, {createGlobalStyle} from "styled-components";
 
 import {Board} from "./components/board";
 import {Title} from "./components/title";
@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
         font-weight: 500;
         height: 100%;
         margin: 0;
+        min-width: 36rem;
         width: 100%;
     }
 
@@ -23,11 +24,18 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-const App: React.StatelessComponent = () => (
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const App: React.FunctionComponent = () => (
     <Fragment>
         <GlobalStyle />
-        <Title />
-        <Board />
+        <Wrapper>
+            <Title />
+            <Board />
+        </Wrapper>
     </Fragment>
 );
 

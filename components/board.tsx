@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
 import {CreateGame, SubmitGame} from "../internal/endpoints";
-import {IGameToken, IGameResult, ICard, IDeck} from "../internal/types";
+import {IGameToken, IGameResult, ICard} from "../internal/types";
 import {Button} from "./button";
 import {Card} from "./card";
 import {Counter} from "./counter";
@@ -15,13 +15,6 @@ const Wrapper = styled.div`
     min-height: 100%;
     justify-content: center;
     padding: 1rem 1rem 3rem;
-`;
-
-const Selector = styled.div`
-    padding: 3rem;
-    position: absolute;
-    right: 0;
-    top: 0;
 `;
 
 const Row = styled.div`
@@ -50,8 +43,16 @@ const Subtitle = styled.div`
     width: 100%;
 `;
 
-const Collapse = styled.div`
-    height: 0;
+const Stack = styled.div`
+    padding: 1.4rem;
+
+    > * {
+        padding: 0;
+    }
+
+    > *:not(:last-child) {
+        height: 0;
+    }
 `;
 
 export const Board: React.FunctionComponent = () => {
@@ -59,7 +60,6 @@ export const Board: React.FunctionComponent = () => {
     const [selection, setSelection] = useState<ICard | null>(null);
     const [result, setResult] = useState<IGameResult | null>(null);
     const [counting, setCounting] = useState<boolean>(false);
-    const [deck, setDeck] = useState<IDeck>("mini");
 
     const submit = (card: ICard) => {
         if (!game) return;
@@ -72,19 +72,11 @@ export const Board: React.FunctionComponent = () => {
             .then(() => setCounting(true));
     };
 
-    const reset = (override?: IDeck) => {
+    const reset = () => {
         setGame(null);
         setSelection(null);
         setResult(null);
-        CreateGame.call({deck: override || deck}).then(setGame);
-    };
-
-    const toggleDeck = () => {
-        const decks: IDeck[] = ["mini", "nsfw"];
-        const currentIndex = decks.indexOf(deck);
-        const nextIndex = (currentIndex + 1) % decks.length;
-        setDeck(decks[nextIndex]);
-        reset(decks[nextIndex]);
+        CreateGame.call({}).then(setGame);
     };
 
     // Load a game on initial render.
@@ -139,25 +131,14 @@ export const Board: React.FunctionComponent = () => {
 
     return (
         <Wrapper>
-            <Selector>
-                <Button
-                    tight
-                    onClick={toggleDeck}
-                    color={deck === "nsfw" ? "#bd0a0a" : "green"}
-                >
-                    {deck}
-                </Button>
-            </Selector>
             <Row style={{pointerEvents: "none"}}>
                 <Card type="black" content={game.question.text} />
-                <div>
-                    <Collapse>
-                        <Card type="outline" content="" />
-                    </Collapse>
+                <Stack>
+                    <Card type="outline" content="" />
                     {selection && (
                         <Card type="white" content={selection.text} />
                     )}
-                </div>
+                </Stack>
             </Row>
             {bottomRowContents}
         </Wrapper>
