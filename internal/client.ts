@@ -7,7 +7,7 @@ import {IGameToken} from "./types";
 // Mock requests when hosted on "GitHub Pages".
 class MockClient extends DefaultClient {
     async send(request: ClientRequest): Promise<ClientResponse> {
-        if (!window.location.hostname.endsWith("github.io")) {
+        if (location.hostname !== "localhost") {
             return super.send(request);
         }
 
