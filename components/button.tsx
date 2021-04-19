@@ -5,7 +5,6 @@ export interface IProps {
     hide?: boolean;
     onClick: () => any;
     color?: string;
-    tight?: boolean;
 }
 
 const Wrapper = styled.div<IProps>`
@@ -14,14 +13,14 @@ const Wrapper = styled.div<IProps>`
     cursor: pointer;
     font-size: 1rem;
     font-weight: 600;
+    padding: 1rem 2rem;
     text-transform: uppercase;
     transition: opacity 0.4s ease;
     user-select: none;
 
-    ${({color, hide, tight}) => css`
-        color: ${color || "#444"}
-        opacity: ${hide ? 0 : 1}
-        padding: ${tight ? "0.5rem 1rem" : "1rem 2rem"};
+    ${({color, hide}) => css`
+        color: ${color || "#444"};
+        opacity: ${hide ? 0 : 1};
     `}
 
     &:active {
