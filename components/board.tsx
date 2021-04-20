@@ -12,9 +12,9 @@ const Wrapper = styled.div`
     align-items: center;
     display: flex;
     flex-direction: column;
-    min-height: 100%;
-    justify-content: center;
-    padding: 1rem 1rem 3rem;
+    flex-grow: 1;
+    justify-content: flex-start;
+    padding: 0rem 1rem;
 `;
 
 const Row = styled.div`
@@ -85,7 +85,9 @@ export const Board: React.FunctionComponent = () => {
     if (!game) {
         return (
             <Wrapper>
-                <Logo loading scale={0.5} color="#444" />
+                <div style={{paddingTop: "10rem"}}>
+                    <Logo isLoading scale={0.5} color="#444" />
+                </div>
             </Wrapper>
         );
     }
@@ -97,7 +99,7 @@ export const Board: React.FunctionComponent = () => {
                 <Result>
                     <Counter
                         target={result.similarity * 100}
-                        callback={() => setCounting(false)}
+                        callback={() => setTimeout(() => setCounting(false))}
                     />
                     %<Subtitle>agree</Subtitle>
                     <Button onClick={reset} hide={counting}>
@@ -110,7 +112,7 @@ export const Board: React.FunctionComponent = () => {
         bottomRowContents = (
             <Row>
                 <Result>
-                    <Logo loading scale={0.5} color="#444" />
+                    <Logo isLoading scale={0.5} color="#444" />
                 </Result>
             </Row>
         );

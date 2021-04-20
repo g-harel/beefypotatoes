@@ -21,6 +21,7 @@ const Wrapper = styled.div<IProps>`
     ${({color, hide}) => css`
         color: ${color || "#444"};
         opacity: ${hide ? 0 : 1};
+        pointer-events: ${hide ? "none" : "all"};
     `}
 
     &:active {

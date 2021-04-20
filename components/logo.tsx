@@ -3,7 +3,7 @@ import styled, {keyframes, css} from "styled-components";
 
 interface IProps {
     color?: string;
-    loading?: true;
+    isLoading?: true;
     scale?: number;
 }
 
@@ -34,8 +34,8 @@ const Full = styled(Base)<IProps>`
     animation: 2s ${slideFull} ease infinite;
     background-color: currentColor;
 
-    ${({loading}) => css`
-        animation-play-state: ${loading ? "initial" : "paused"};
+    ${({isLoading}) => css`
+        animation-play-state: ${isLoading ? "initial" : "paused"};
     `}
 `;
 
@@ -50,8 +50,8 @@ const Outline = styled(Base)<IProps>`
     animation: 2s ${slideOutline} ease infinite;
     border: 18px solid currentColor;
 
-    ${({loading}) => css`
-        animation-play-state: ${loading ? "initial" : "paused"};
+    ${({isLoading}) => css`
+        animation-play-state: ${isLoading ? "initial" : "paused"};
     `}
 `;
 
