@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import {DefaultClient} from "rickety";
 import {ClientRequest, ClientResponse} from "rickety/client";
 
-import {IGameToken} from "./types";
+import {IGameToken} from "../internal/types";
 
 // Mock requests when hosted on "GitHub Pages".
 class MockClient extends DefaultClient {

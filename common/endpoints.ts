@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 import {Endpoint} from "rickety";
 import {ClientRequest, ClientResponse} from "rickety/client";
 
-import BaseClient from "./client";
-import {IGameResult, IGameSubmit, IGameToken} from "./types";
+import BaseClient from "../website/client";
+import {IGameResult, IGameSubmit, IGameToken} from "../internal/types";
 
 class CreateGameClient extends BaseClient {
     async send(request: ClientRequest): Promise<ClientResponse> {

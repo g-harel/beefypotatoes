@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
-import {CreateGame, SubmitGame} from "../internal/endpoints";
-import {IGameToken, IGameResult, ICard} from "../internal/types";
+import {CreateGame, SubmitGame} from "../../common/endpoints";
+import {IGameToken, IGameResult, ICard} from "../../internal/types";
 import {Button} from "./button";
 import {Card} from "./card";
 import {Counter} from "./counter";
