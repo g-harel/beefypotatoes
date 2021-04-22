@@ -1,7 +1,7 @@
 {
     "scripts": {
-        "web:build": "parcel build index.html -d .build --no-source-maps",
-        "web:dev": "parcel -d .dist index.html",
+        "web:build": "parcel build website/index.html -d .website --no-source-maps",
+        "web:dev": "parcel -d .dist website/index.html",
         "func:build": "tsc -p functions --outDir .functions",
         "fmt": "prettier --list-different --write --ignore-path .gitignore \"**/*.{js,ts,tsx,html,md,json}\""
     },
