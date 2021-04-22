@@ -3,7 +3,7 @@ import {Endpoint} from "rickety";
 import {ClientRequest, ClientResponse} from "rickety/client";
 
 import BaseClient from "../website/client";
-import {IGameResult, IGameSubmit, IGameToken} from "../internal/types";
+import {IGameResult, IGameSubmit, IGameToken} from "./types";
 
 class CreateGameClient extends BaseClient {
     async send(request: ClientRequest): Promise<ClientResponse> {

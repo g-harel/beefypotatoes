@@ -1,8 +1,8 @@
 {
     "scripts": {
-        "build": "parcel build index.html -d .build --no-source-maps",
-        "dev": "parcel -d .dist index.html",
-        "test": "run-s fmt build",
+        "web:build": "parcel build index.html -d .build --no-source-maps",
+        "web:dev": "parcel -d .dist index.html",
+        "func:build": "tsc -p functions --outDir .functions",
         "fmt": "prettier --list-different --write --ignore-path .gitignore \"**/*.{js,ts,tsx,html,md,json}\""
     },
     "dependencies": {
