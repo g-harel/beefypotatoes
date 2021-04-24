@@ -14,7 +14,7 @@ class MockClient extends DefaultClient {
         if (request.url.startsWith("/api/game")) {
             const mockGame: IGameToken = {
                 raw: "",
-                question: {
+                prompt: {
                     id: "",
                     text: "What gets better with age?",
                 },

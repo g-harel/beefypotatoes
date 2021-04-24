@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
 import {CreateGame, SubmitGame} from "../../common/endpoints";
-import {IGameToken, IGameResult, ICard} from "../../internal/types";
+import {IGameToken, IGameResult, ICard} from "../../common/types";
 import {Button} from "./button";
 import {Card} from "./card";
 import {Counter} from "./counter";
@@ -134,7 +134,7 @@ export const Board: React.FunctionComponent = () => {
     return (
         <Wrapper>
             <Row style={{pointerEvents: "none"}}>
-                <Card type="black" content={game.question.text} />
+                <Card type="black" content={game.prompt.text} />
                 <Stack>
                     <Card type="outline" content="" />
                     {selection && (

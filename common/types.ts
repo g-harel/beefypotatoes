@@ -4,7 +4,7 @@ export interface ICard {
 }
 
 export interface IGameToken {
-    question: ICard;
+    prompt: ICard;
     answers: ICard[];
     raw: string;
 }
