@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import {Endpoint} from "rickety";
 import {ClientRequest, ClientResponse} from "rickety/client";
 
-import BaseClient from "../website/client";
+import BaseClient from "./client";
 import {IGameResult, IGameSubmit, IGameToken} from "./types";
 
 class CreateGameClient extends BaseClient {

@@ -9,7 +9,9 @@ const pickRandom = <T>(count: number, items: T[]): T[] => {
     while (Object.keys(pickedIDs).length < count) {
         pickedIDs[Math.floor(Math.random() * items.length)] = true;
     }
-    return Object.keys(pickedIDs).map(Number).map((i) => items[i]);
+    return Object.keys(pickedIDs)
+        .map(Number)
+        .map((i) => items[i]);
 };
 
 export const createGame = functions.https.onRequest(

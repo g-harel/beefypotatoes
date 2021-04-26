@@ -4,7 +4,8 @@
     },
     "functions": {
         "runtime": "nodejs12",
-        "source": ".functions/functions"
+        "source": ".functions",
+        "ignore": ["**/*", "!package.json", "!index.js"]
     },
     "hosting": {
         "public": ".website"
