@@ -8,7 +8,7 @@ import {IGameToken} from "./types";
 class MockClient extends DefaultClient {
     async send(request: ClientRequest): Promise<ClientResponse> {
         // TODO: Never fetch over the network.
-        if (location.hostname !== "localhost" || false) {
+        if (location.hostname !== "localhost" && false) {
             return super.send(request);
         }
 
