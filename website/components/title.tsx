@@ -11,6 +11,6 @@ const Wrapper = styled.h1`
 
 export const Title: React.FunctionComponent = () => (
     <Wrapper>
-        Cards <br /> Amusing <br /> Humanity
+        Humanity <br /> Against <br /> Cards
     </Wrapper>
 );

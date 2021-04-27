@@ -1,12 +1,15 @@
 {
     "scripts": {
-        "build": "run-s build:func:* build:web",
-        "build:web": "parcel build website/index.html -d .website --no-source-maps",
-        "build:func:dir": "mkdir -p .functions",
-        "build:func:package": "cpy functions/package.json .functions",
-        "build:func:bundle": "microbundle build --entry functions/index.ts --output .functions --target node",
-        "build:func:index": "cpy .functions/cards.js .functions --rename index.js",
-        "deploy:func": "firebase deploy --only functions",
+        "build": "run-s build:functions:* build:website:*",
+        "build:website:dir": "rimraf .website",
+        "build:website:bundle": "parcel build website/index.html -d .website --no-source-maps",
+        "build:functions:dir": "mkdir -p .functions",
+        "build:functions:package": "cpy functions/package.json .functions",
+        "build:functions:bundle": "microbundle build --entry functions/index.ts --output .functions --target node",
+        "build:functions:index": "cpy .functions/cards.js .functions --rename index.js",
+        "deploy": "run-s deploy:*",
+        "deploy:functions": "firebase deploy --only functions",
+        "deploy:website": "firebase deploy --only hosting",
         "dev": "parcel -d .dist website/index.html",
         "fmt": "prettier --list-different --write --ignore-path .gitignore \"**/*.{js,ts,tsx,html,md,json}\""
     },
@@ -30,7 +33,8 @@
         "cpy-cli": "^3.1.1",
         "npm-run-all": "^4.1.5",
         "parcel-bundler": "^1.12.0",
-        "prettier": "^2.2.1"
+        "prettier": "^2.2.1",
+        "rimraf": "^3.0.2"
     },
     "prettier": {
         "tabWidth": 4,
