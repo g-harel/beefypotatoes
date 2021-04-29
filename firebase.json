@@ -5,7 +5,7 @@
     "functions": {
         "runtime": "nodejs12",
         "source": ".functions",
-        "ignore": ["**/*", "!package.json", "!index.js"]
+        "ignore": ["cards.*", "*.ts"]
     },
     "hosting": {
         "public": ".website"

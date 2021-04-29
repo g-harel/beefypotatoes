@@ -1,4 +1,4 @@
-name: Deploy to Firebase Hosting on merge
+name: Deploy to Firebase on merge
 'on':
   push:
     branches:
@@ -8,12 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm install && npm run web:build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - run: npm install && npm run build
+      - uses: w9jds/firebase-action@master
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CARDS_F5F97 }}'
-          channelId: live
-          projectId: cards-f5f97
+          args: deploy
         env:
-          FIREBASE_CLI_PREVIEWS: hostingchannels
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CARDS_F5F97 }}
