@@ -3,14 +3,13 @@ export interface ICard {
     text: string;
 }
 
-export interface IGameToken {
+export interface IGame {
     prompt: ICard;
     answers: ICard[];
-    raw: string;
 }
 
 export interface IGameSubmit {
-    token: IGameToken;
+    token: IGame;
     choice: string;
 }
 

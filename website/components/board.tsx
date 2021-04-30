@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
 import {CreateGame, SubmitGame} from "../../common/endpoints";
-import {IGameToken, IGameResult, ICard} from "../../common/types";
+import {IGame, IGameResult, ICard} from "../../common/types";
 import {Button} from "./button";
 import {Card} from "./card";
 import {Counter} from "./counter";
@@ -56,7 +56,7 @@ const Stack = styled.div`
 `;
 
 export const Board: React.FunctionComponent = () => {
-    const [game, setGame] = useState<IGameToken | null>(null);
+    const [game, setGame] = useState<IGame | null>(null);
     const [selection, setSelection] = useState<ICard | null>(null);
     const [result, setResult] = useState<IGameResult | null>(null);
     const [counting, setCounting] = useState<boolean>(false);

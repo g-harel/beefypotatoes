@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import {DefaultClient} from "rickety";
 import {ClientRequest, ClientResponse} from "rickety/client";
 
-import {IGameToken} from "./types";
+import {IGame} from "./types";
 
 // Mock requests when hosted on "GitHub Pages".
 class MockClient extends DefaultClient {
@@ -13,8 +13,7 @@ class MockClient extends DefaultClient {
         }
 
         if (request.url.startsWith("/api/game")) {
-            const mockGame: IGameToken = {
-                raw: "",
+            const mockGame: IGame = {
                 prompt: {
                     id: "",
                     text: "What gets better with age?",

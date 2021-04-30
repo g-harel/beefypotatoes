@@ -1,4 +1,4 @@
-import {ICard} from "../common/types";
+import {ICard} from "../../common/types";
 
 // Use `scripts/addCards.js` to add new cards.
 // Prompt cards with multiple blanks are not supported.

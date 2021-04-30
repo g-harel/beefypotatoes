@@ -3,7 +3,7 @@ import {Endpoint} from "rickety";
 import {ClientRequest, ClientResponse} from "rickety/client";
 
 import BaseClient from "./client";
-import {IGameResult, IGameSubmit, IGameToken} from "./types";
+import {IGameResult, IGameSubmit, IGame} from "./types";
 
 class CreateGameClient extends BaseClient {
     async send(request: ClientRequest): Promise<ClientResponse> {
@@ -18,8 +18,8 @@ class CreateGameClient extends BaseClient {
         // JWT logic is hidden from the caller.
         // Original raw token is required to submit the result and is added to the game object.
         const token = responseBody.token;
-        const game = jwt.decode(token) as IGameToken;
-        game.raw = token;
+        const game = jwt.decode(token) as IGame;
+        // TODO game.token = token;
 
         // Response body is replaced with modified value before returning.
         response.body = JSON.stringify(game);
@@ -32,13 +32,13 @@ class SubmitGameClient extends BaseClient {
         const requestBody: IGameSubmit = JSON.parse(request.body);
 
         // Request body's token is replaced with the raw string version.
-        requestBody.token = requestBody.token.raw as any;
+        // TODO requestBody.token = requestBody.token.token as any;
         request.body = JSON.stringify(requestBody);
         return super.send(request);
     }
 }
 
-export const CreateGame = new Endpoint<{}, IGameToken>({
+export const CreateGame = new Endpoint<{}, IGame>({
     client: new CreateGameClient(),
     method: "GET",
     path: "/api/game",
