@@ -8,11 +8,17 @@ export interface IGame {
     answers: ICard[];
 }
 
-export interface IGameSubmit {
-    token: IGame;
+export interface ICreateResponse {
+    game: IGame;
+    token: string;
+}
+
+export interface ISubmitRequest {
+    game: IGame;
+    token: string;
     choice: string;
 }
 
-export interface IGameResult {
+export interface ISubmitResponse {
     similarity: number;
 }

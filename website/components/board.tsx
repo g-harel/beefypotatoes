@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
 import {CreateGame, SubmitGame} from "../../common/endpoints";
-import {IGame, IGameResult, ICard} from "../../common/types";
+import {ISubmitResponse, ICard, ICreateResponse} from "../../common/types";
 import {Button} from "./button";
 import {Card} from "./card";
 import {Counter} from "./counter";
@@ -56,16 +56,16 @@ const Stack = styled.div`
 `;
 
 export const Board: React.FunctionComponent = () => {
-    const [game, setGame] = useState<IGame | null>(null);
+    const [board, setBoard] = useState<ICreateResponse | null>(null);
     const [selection, setSelection] = useState<ICard | null>(null);
-    const [result, setResult] = useState<IGameResult | null>(null);
+    const [result, setResult] = useState<ISubmitResponse | null>(null);
     const [counting, setCounting] = useState<boolean>(false);
 
     const submit = (card: ICard) => {
-        if (!game) return;
+        if (!board) return;
         setSelection(card);
         SubmitGame.call({
-            token: game,
+            ...board,
             choice: card.id,
         })
             .then(setResult)
@@ -73,16 +73,16 @@ export const Board: React.FunctionComponent = () => {
     };
 
     const reset = () => {
-        setGame(null);
+        setBoard(null);
         setSelection(null);
         setResult(null);
-        CreateGame.call({}).then(setGame);
+        CreateGame.call({}).then(setBoard);
     };
 
     // Load a game on initial render.
     useEffect(reset, []);
 
-    if (!game) {
+    if (!board) {
         return (
             <Wrapper>
                 <div style={{paddingTop: "10rem"}}>
@@ -119,7 +119,7 @@ export const Board: React.FunctionComponent = () => {
     } else {
         bottomRowContents = (
             <Row>
-                {game.answers.map((card) => (
+                {board.game.answers.map((card) => (
                     <Card
                         key={card.id}
                         type="white"
@@ -134,7 +134,7 @@ export const Board: React.FunctionComponent = () => {
     return (
         <Wrapper>
             <Row style={{pointerEvents: "none"}}>
-                <Card type="black" content={game.prompt.text} />
+                <Card type="black" content={board.game.prompt.text} />
                 <Stack>
                     <Card type="outline" content="" />
                     {selection && (

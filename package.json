@@ -14,6 +14,7 @@
         "fmt": "prettier --list-different --write --ignore-path .gitignore \"**/*.{js,ts,tsx,html,md,json}\""
     },
     "dependencies": {
+        "deep-equal": "^2.0.5",
         "firebase-admin": "^9.6.0",
         "firebase-functions": "^3.11.0",
         "firebase-tools": "^9.10.0",
@@ -26,6 +27,7 @@
         "typescript": "^4.2.4"
     },
     "devDependencies": {
+        "@types/deep-equal": "^1.0.1",
         "@types/jsonwebtoken": "^8.3.2",
         "@types/react": "^17.0.3",
         "@types/react-dom": "^17.0.3",

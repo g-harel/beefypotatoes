@@ -1,5 +1,6 @@
 import * as functions from "firebase-functions";
 import jwt from "jsonwebtoken";
+import deepEqual from "deep-equal";
 
 import {IGame} from "../../common/types";
 
@@ -14,11 +15,11 @@ export const sign = (game: IGame): string => {
     });
 };
 
-export const verify = (token: string): boolean => {
+export const verify = (game: IGame, token: string): boolean => {
     // TODO ttl.
     try {
-        jwt.verify(token, secret);
-        return true;
+        const tokenGame: IGame = jwt.verify(token, secret) as any;
+        return deepEqual(tokenGame, game);
     } catch {
         return false;
     }

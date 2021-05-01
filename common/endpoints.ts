@@ -3,7 +3,7 @@ import {Endpoint} from "rickety";
 import {ClientRequest, ClientResponse} from "rickety/client";
 
 import BaseClient from "./client";
-import {IGameResult, IGameSubmit, IGame} from "./types";
+import {ISubmitResponse, ISubmitRequest, IGame, ICreateResponse} from "./types";
 
 class CreateGameClient extends BaseClient {
     async send(request: ClientRequest): Promise<ClientResponse> {
@@ -29,7 +29,7 @@ class CreateGameClient extends BaseClient {
 
 class SubmitGameClient extends BaseClient {
     async send(request: ClientRequest): Promise<ClientResponse> {
-        const requestBody: IGameSubmit = JSON.parse(request.body);
+        const requestBody: ISubmitRequest = JSON.parse(request.body);
 
         // Request body's token is replaced with the raw string version.
         // TODO requestBody.token = requestBody.token.token as any;
@@ -38,13 +38,13 @@ class SubmitGameClient extends BaseClient {
     }
 }
 
-export const CreateGame = new Endpoint<{}, IGame>({
+export const CreateGame = new Endpoint<{}, ICreateResponse>({
     client: new CreateGameClient(),
     method: "GET",
     path: "/api/game",
 });
 
-export const SubmitGame = new Endpoint<IGameSubmit, IGameResult>({
+export const SubmitGame = new Endpoint<ISubmitRequest, ISubmitResponse>({
     client: new SubmitGameClient(),
     method: "POST",
     path: "/api/submit",

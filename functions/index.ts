@@ -1,15 +1,17 @@
 import * as functions from "firebase-functions";
 
 import {CreateGame, SubmitGame} from "../common/endpoints";
+import {IGame} from "../common/types";
 import {pickRandomAnswers, pickRandomPrompt} from "./cards";
+import {sign} from "./signing";
 
 export const createGame = functions.https.onRequest(
     CreateGame.handler((_) => {
-        return {
+        const game: IGame = {
             prompt: pickRandomPrompt(),
             answers: pickRandomAnswers(),
-            token: "TODO signed payload",
         };
+        return {game, token: sign(game)};
     }),
 );
 
