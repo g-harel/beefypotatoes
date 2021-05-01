@@ -10,7 +10,8 @@
         "deploy": "run-s deploy:*",
         "deploy:functions": "firebase deploy --only functions",
         "deploy:website": "firebase deploy --only hosting",
-        "dev": "parcel -d .dist website/index.html",
+        "dev:server": "cross-env PORT=3001 ts-node testing/server",
+        "dev:website": "parcel -d .dist website/index.html",
         "fmt": "prettier --list-different --write --ignore-path .gitignore \"**/*.{js,ts,tsx,html,md,json}\""
     },
     "dependencies": {
@@ -33,10 +34,13 @@
         "@types/react-dom": "^17.0.3",
         "@types/styled-components": "^5.1.9",
         "cpy-cli": "^3.1.1",
+        "cross-env": "^7.0.3",
+        "express": "^4.17.1",
         "npm-run-all": "^4.1.5",
         "parcel-bundler": "^1.12.0",
         "prettier": "^2.2.1",
-        "rimraf": "^3.0.2"
+        "rimraf": "^3.0.2",
+        "ts-node": "^9.1.1"
     },
     "prettier": {
         "tabWidth": 4,
