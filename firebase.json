@@ -8,6 +8,10 @@
         "ignore": ["cards.*", "*.ts"]
     },
     "hosting": {
-        "public": ".website"
+        "public": ".website",
+        "rewrites": [
+            {"source": "/api/game", "function": "createGame"},
+            {"source": "/api/submit", "function": "submitGame"}
+        ]
     }
 }

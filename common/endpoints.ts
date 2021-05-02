@@ -3,15 +3,12 @@ import {ClientRequest, ClientResponse} from "rickety/client";
 
 import {ISubmitResponse, ISubmitRequest, ICreateResponse} from "./types";
 
-// Switch between dev server and firebase depending on env.
+// Switch to dev host on localhost.
 class BaseClient extends DefaultClient {
     async send(request: ClientRequest): Promise<ClientResponse> {
         if (location.hostname === "localhost") {
             request.url = "http://localhost:3001" + request.url;
-            return super.send(request);
         }
-
-        // TODO firebase.
         return super.send(request);
     }
 }
@@ -19,11 +16,11 @@ class BaseClient extends DefaultClient {
 export const CreateGame = new Endpoint<{}, ICreateResponse>({
     client: new BaseClient(),
     method: "POST",
-    path: "/api/game",
+    path: "/api/v1/game",
 });
 
 export const SubmitGame = new Endpoint<ISubmitRequest, ISubmitResponse>({
     client: new BaseClient(),
     method: "POST",
-    path: "/api/submit",
+    path: "/api/v1/submit",
 });
