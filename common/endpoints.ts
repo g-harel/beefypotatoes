@@ -11,7 +11,7 @@ class BaseClient extends DefaultClient {
         if (location.hostname === "localhost") {
             if (USE_DEV_SERVER) {
                 request.url = "http://localhost:3001" + request.url;
-            } else  {
+            } else {
                 request.url = "https://humanityagainstcards.com" + request.url;
             }
         }
