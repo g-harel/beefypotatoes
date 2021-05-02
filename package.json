@@ -1,18 +1,20 @@
 {
     "scripts": {
         "build": "run-s build:functions:* build:website:*",
+        "deploy": "run-s deploy:*",
+        "dev": "run-p dev:*",
+        "fmt": "prettier --list-different --write --ignore-path .gitignore \"**/*.{js,ts,tsx,html,md,json}\"",
+        "---------------------------------------------": "",
         "build:website:dir": "rimraf .website",
         "build:website:bundle": "parcel build website/index.html -d .website --no-source-maps",
         "build:functions:dir": "mkdir -p .functions",
         "build:functions:package": "cpy functions/package.json .functions",
         "build:functions:bundle": "microbundle build --entry functions/index.ts --output .functions --target node",
         "build:functions:index": "cpy .functions/cards.js .functions --rename index.js",
-        "deploy": "run-s deploy:*",
         "deploy:functions": "firebase deploy --only functions",
         "deploy:website": "firebase deploy --only hosting",
-        "dev:server": "cross-env PORT=3001 ts-node testing/server",
-        "dev:website": "parcel -d .dist website/index.html",
-        "fmt": "prettier --list-different --write --ignore-path .gitignore \"**/*.{js,ts,tsx,html,md,json}\""
+        "dev:server": "cross-env PORT=3001 ts-node-dev testing/server",
+        "dev:website": "parcel -d .dist website/index.html"
     },
     "dependencies": {
         "deep-equal": "^2.0.5",
@@ -28,11 +30,13 @@
         "typescript": "^4.2.4"
     },
     "devDependencies": {
+        "@types/cors": "^2.8.10",
         "@types/deep-equal": "^1.0.1",
         "@types/jsonwebtoken": "^8.3.2",
         "@types/react": "^17.0.3",
         "@types/react-dom": "^17.0.3",
         "@types/styled-components": "^5.1.9",
+        "cors": "^2.8.5",
         "cpy-cli": "^3.1.1",
         "cross-env": "^7.0.3",
         "express": "^4.17.1",
@@ -40,7 +44,7 @@
         "parcel-bundler": "^1.12.0",
         "prettier": "^2.2.1",
         "rimraf": "^3.0.2",
-        "ts-node": "^9.1.1"
+        "ts-node-dev": "^1.1.6"
     },
     "prettier": {
         "tabWidth": 4,

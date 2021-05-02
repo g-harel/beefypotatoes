@@ -11,8 +11,6 @@ export const createGameHandler = CreateGame.handler((_) => {
     return {game, token: sign(game)};
 });
 
-export const submitGameHandler = SubmitGame.handler((game) => {
-    // TODO remove logging.
-    console.log(game);
+export const submitGameHandler = SubmitGame.handler((_) => {
     return {similarity: Math.random()};
 });

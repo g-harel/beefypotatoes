@@ -1,51 +1,29 @@
-import jwt from "jsonwebtoken";
-import {Endpoint} from "rickety";
+import {Endpoint, DefaultClient} from "rickety";
 import {ClientRequest, ClientResponse} from "rickety/client";
 
-import BaseClient from "./client";
-import {ISubmitResponse, ISubmitRequest, IGame, ICreateResponse} from "./types";
+import {ISubmitResponse, ISubmitRequest, ICreateResponse} from "./types";
 
-class CreateGameClient extends BaseClient {
+// Switch between dev server and firebase depending on env.
+class BaseClient extends DefaultClient {
     async send(request: ClientRequest): Promise<ClientResponse> {
-        // GET requests should not have a body.
-        request.body = "";
+        if (location.hostname === "localhost") {
+            request.url = "http://localhost:3001" + request.url;
+            return super.send(request);
+        }
 
-        // Send modified request with parent client.
-        const response = await super.send(request);
-        const responseBody = JSON.parse(response.body);
-
-        // Extract game token from the response body.
-        // JWT logic is hidden from the caller.
-        // Original raw token is required to submit the result and is added to the game object.
-        const token = responseBody.token;
-        const game = jwt.decode(token) as IGame;
-        // TODO game.token = token;
-
-        // Response body is replaced with modified value before returning.
-        response.body = JSON.stringify(game);
-        return response;
-    }
-}
-
-class SubmitGameClient extends BaseClient {
-    async send(request: ClientRequest): Promise<ClientResponse> {
-        const requestBody: ISubmitRequest = JSON.parse(request.body);
-
-        // Request body's token is replaced with the raw string version.
-        // TODO requestBody.token = requestBody.token.token as any;
-        request.body = JSON.stringify(requestBody);
+        // TODO firebase.
         return super.send(request);
     }
 }
 
 export const CreateGame = new Endpoint<{}, ICreateResponse>({
-    client: new CreateGameClient(),
-    method: "GET",
+    client: new BaseClient(),
+    method: "POST",
     path: "/api/game",
 });
 
 export const SubmitGame = new Endpoint<ISubmitRequest, ISubmitResponse>({
-    client: new SubmitGameClient(),
+    client: new BaseClient(),
     method: "POST",
     path: "/api/submit",
 });
