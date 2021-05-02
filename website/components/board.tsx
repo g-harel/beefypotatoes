@@ -99,6 +99,7 @@ export const Board: React.FunctionComponent = () => {
                 <Result>
                     <Counter
                         target={result.similarity * 100}
+                        duration={1000}
                         callback={() => setTimeout(() => setCounting(false))}
                     />
                     %<Subtitle>agree</Subtitle>

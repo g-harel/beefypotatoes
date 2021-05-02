@@ -2,7 +2,7 @@ import {ICard} from "../../common/types";
 import {answerCards, promptCards} from "./data";
 
 const ANSWERS_PER_GAME = 4;
-const PROMPT_COUNT = Math.min(23, promptCards.length); // Only use the first N prompt cards.
+const PROMPT_COUNT = Math.min(42, promptCards.length); // Only use the first N prompt cards.
 const ANSWER_BUCKET_COUNT = 1; // Only pick random cards from N neighboring buckets.
 
 const bucketCount =

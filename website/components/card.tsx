@@ -98,9 +98,6 @@ export const Card: React.FunctionComponent<IProps> = (props) => {
     let content = (props.content || "").padEnd(2, " ");
     const angle = ((content.charCodeAt(0) + content.charCodeAt(1)) % 11) - 5;
 
-    // Replace blank spaces with a longer line.
-    content = content.replace(/_/g, "__________");
-
     if (props.type === "outline") {
         return (
             <Wrapper>
@@ -115,13 +112,17 @@ export const Card: React.FunctionComponent<IProps> = (props) => {
                 <Shadow angle={angle} x={-0.8} y={0.5} />
             </Collapse>
             {props.type === "black" ? (
-                <Black angle={angle} onClick={props.onClick}>
-                    {content}
-                </Black>
+                <Black
+                    angle={angle}
+                    onClick={props.onClick}
+                    dangerouslySetInnerHTML={{__html: content}}
+                />
             ) : (
-                <White angle={angle} onClick={props.onClick}>
-                    {content}
-                </White>
+                <White
+                    angle={angle}
+                    onClick={props.onClick}
+                    dangerouslySetInnerHTML={{__html: content}}
+                />
             )}
         </Wrapper>
     );
