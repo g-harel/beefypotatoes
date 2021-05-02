@@ -10,8 +10,8 @@
     "hosting": {
         "public": ".website",
         "rewrites": [
-            {"source": "/api/game", "function": "createGame"},
-            {"source": "/api/submit", "function": "submitGame"}
+            {"source": "/api/v1/game", "function": "createGame"},
+            {"source": "/api/v1/submit", "function": "submitGame"}
         ]
     }
 }

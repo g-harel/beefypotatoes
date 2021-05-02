@@ -3,11 +3,17 @@ import {ClientRequest, ClientResponse} from "rickety/client";
 
 import {ISubmitResponse, ISubmitRequest, ICreateResponse} from "./types";
 
+const USE_DEV_SERVER = false;
+
 // Switch to dev host on localhost.
 class BaseClient extends DefaultClient {
     async send(request: ClientRequest): Promise<ClientResponse> {
         if (location.hostname === "localhost") {
-            request.url = "http://localhost:3001" + request.url;
+            if (USE_DEV_SERVER) {
+                request.url = "http://localhost:3001" + request.url;
+            } else  {
+                request.url = "https://humanityagainstcards.com" + request.url;
+            }
         }
         return super.send(request);
     }
