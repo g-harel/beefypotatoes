@@ -13,6 +13,20 @@ const REMOTE_FUNC_PROXY = "http://humanityagainstcards.com";
 const app = express();
 const proxy = httpProxy.createProxy();
 
+proxy.on('error', (err) => {
+    console.log(`ERROR ${err}`)
+});
+
+proxy.on('proxyRes', function (res) {
+    if (res.statusCode !== 200) {
+        res.on('data', function (chunk) {
+            console.log('   STATUS: ', JSON.stringify(res.statusCode, null, 2));
+            console.log('   HEADERS: ', JSON.stringify(res.headers, null, 2));
+            console.log('   BODY: ' + chunk);
+        });
+    }
+  });
+
 app.use((req, res, next) => {
     if (!req.url.startsWith("/api")) {
         console.log(`>> ${FILE_PROXY}${req.url}`);
