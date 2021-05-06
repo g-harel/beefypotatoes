@@ -13,7 +13,7 @@
         "build:functions:index": "cpy .functions/cards.js .functions --rename index.js",
         "deploy:functions": "firebase deploy --only functions",
         "deploy:website": "firebase deploy --only hosting",
-        "dev:server": "cross-env PORT=3001 FILE_PORT=3002 REMOTE_FUNC=true ts-node-dev testing/server",
+        "dev:server": "cross-env PORT=3001 FILE_PORT=3002 REMOTE_FUNC=false ts-node-dev testing/server",
         "dev:website": "parcel --port 3002 -d .dist website/index.html"
     },
     "dependencies": {

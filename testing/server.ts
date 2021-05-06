@@ -1,3 +1,12 @@
+import admin from "firebase-admin";
+
+// Initialize with local credentials.
+admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
+    databaseURL: "https://cards-f5f97-default-rtdb.firebaseio.com",
+});
+(global as any).FIREBASE_INITIALIZED = true;
+
 import express from "express";
 import httpProxy from "http-proxy";
 
@@ -13,19 +22,19 @@ const REMOTE_FUNC_PROXY = "http://humanityagainstcards.com";
 const app = express();
 const proxy = httpProxy.createProxy();
 
-proxy.on('error', (err) => {
-    console.log(`ERROR ${err}`)
+proxy.on("error", (err) => {
+    console.log(`ERROR ${err}`);
 });
 
-proxy.on('proxyRes', function (res) {
+proxy.on("proxyRes", function (res) {
     if (res.statusCode !== 200) {
-        res.on('data', function (chunk) {
-            console.log('   STATUS: ', JSON.stringify(res.statusCode, null, 2));
-            console.log('   HEADERS: ', JSON.stringify(res.headers, null, 2));
-            console.log('   BODY: ' + chunk);
+        res.on("data", function (chunk) {
+            console.log("   STATUS: ", JSON.stringify(res.statusCode, null, 2));
+            console.log("   HEADERS: ", JSON.stringify(res.headers, null, 2));
+            console.log("   BODY: " + chunk);
         });
     }
-  });
+});
 
 app.use((req, res, next) => {
     if (!req.url.startsWith("/api")) {
