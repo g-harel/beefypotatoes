@@ -1,14 +1,10 @@
 import {CreateGame, SubmitGame} from "../common/endpoints";
-import {IGame} from "../common/types";
 import {submit} from "./analytics";
-import {pickRandomAnswers, pickRandomPrompt} from "./cards";
+import {createGame} from "./cards";
 import {sign, verify} from "./signing";
 
 export const createGameHandler = CreateGame.handler((_) => {
-    const game: IGame = {
-        prompt: pickRandomPrompt(),
-        answers: pickRandomAnswers(),
-    };
+    const game = createGame([]); // TODO exclude recent prompts.
     return {game, token: sign(game)};
 });
 

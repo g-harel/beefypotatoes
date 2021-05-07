@@ -1,12 +1,12 @@
-import {ICard} from "../../common/types";
+import {ICard, IGame} from "../../common/types";
 import {answerCards, promptCards} from "./data";
 
 const ANSWERS_PER_GAME = 4;
-const PROMPT_COUNT = Math.min(42, promptCards.length); // Only use the first N prompt cards.
-const ANSWER_BUCKET_COUNT = 1; // Only pick random cards from N neighboring buckets.
+const ANSWER_BUCKET_SIZE = 1;
 
-const bucketCount =
-    Math.floor(answerCards.length / ANSWERS_PER_GAME) - ANSWER_BUCKET_COUNT;
+if (answerCards.length < promptCards.length * ANSWERS_PER_GAME) {
+    throw "answer/prompt ration too low";
+}
 
 const pickRandom = <T>(count: number, items: T[]): T[] => {
     if (count >= items.length) return items;
@@ -19,21 +19,33 @@ const pickRandom = <T>(count: number, items: T[]): T[] => {
         .map((i) => items[i]);
 };
 
-export const pickRandomPrompt = (): ICard => {
-    return pickRandom(1, promptCards.slice(0, PROMPT_COUNT))[0];
-};
+export const createGame = (excludeIDs: string[]): IGame => {
+    // Keep the last exclude IDs up to a maximum of half the number of prompts.
+    const maxExcludeCount = Math.floor(promptCards.length / 2);
+    const actualExcludedIDs = excludeIDs.slice(
+        Math.max(0, excludeIDs.length - maxExcludeCount),
+    );
 
-export const pickRandomAnswers = (): ICard[] => {
-    if (ANSWER_BUCKET_COUNT > 0) {
-        const randomBucket = Math.floor(Math.random() * bucketCount);
-        return pickRandom(
-            ANSWERS_PER_GAME,
-            answerCards.slice(
-                randomBucket * ANSWERS_PER_GAME,
-                randomBucket * ANSWERS_PER_GAME +
-                    ANSWER_BUCKET_COUNT * ANSWERS_PER_GAME,
+    // Pick a prompt that is not excluded.
+    let promptIndex: number;
+    let prompt: ICard;
+    while (true) {
+        promptIndex = Math.floor(Math.random() * promptCards.length);
+        prompt = promptCards[promptIndex];
+        if (!actualExcludedIDs.includes(prompt.id)) break;
+    }
+
+    // Pick answer cards.
+    const answersBucket: ICard[] = [];
+    for (let i = 0; i < ANSWER_BUCKET_SIZE; i++) {
+        let offsetPromptIndex = (promptIndex + i) % promptCards.length;
+        const offsetAnswerIndex = offsetPromptIndex * ANSWERS_PER_GAME;
+        answersBucket.push(
+            ...answerCards.slice(
+                offsetAnswerIndex,
+                offsetAnswerIndex + ANSWERS_PER_GAME,
             ),
         );
     }
-    return pickRandom(ANSWERS_PER_GAME, answerCards);
+    return {prompt, answers: pickRandom(ANSWERS_PER_GAME, answersBucket)};
 };

@@ -5,6 +5,7 @@ import {ICard} from "../../common/types";
 
 // prettier-ignore
 export const promptCards: ICard[] = [
+    // ]; let _; console.log(_); _ = [
     {id: "267EFE92-566E-6937-142E-806E856A4F3C", text: `Here is the church Here is the steeple Open the doors And there is ____.`},
     {id: "D6FF8103-1D7C-6DAD-AF52-A9BD355295C8", text: `50% of all marriages end in ____.`},
     {id: "8CE76FD5-1EBC-8AE4-77CA-B6C1F8AEFF6A", text: `As the mom of five rambunctious boys, I'm no stranger to ____.`},
