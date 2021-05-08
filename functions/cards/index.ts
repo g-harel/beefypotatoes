@@ -2,21 +2,24 @@ import {ICard, IGame} from "../../common/types";
 import {answerCards, promptCards} from "./data";
 
 const ANSWERS_PER_GAME = 4;
-const ANSWER_BUCKET_SIZE = 1;
+const ANSWER_BUCKET_SIZE = 2; // Randomly pick answers from N neighbor buckets.
 
 if (answerCards.length < promptCards.length * ANSWERS_PER_GAME) {
-    throw "answer/prompt ration too low";
+    throw "The answer/prompt ration too low.";
+}
+if (promptCards.length < ANSWER_BUCKET_SIZE) {
+    throw "There are not enough prompts for additional buckets.";
 }
 
 const pickRandom = <T>(count: number, items: T[]): T[] => {
-    if (count >= items.length) return items;
     const pickedIDs: Record<number, true> = {};
     while (Object.keys(pickedIDs).length < count) {
         pickedIDs[Math.floor(Math.random() * items.length)] = true;
     }
     return Object.keys(pickedIDs)
         .map(Number)
-        .map((i) => items[i]);
+        .map((i) => items[i])
+        .sort(() => Math.random() - 0.5);
 };
 
 export const createGame = (excludeIDs: string[]): IGame => {

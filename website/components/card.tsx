@@ -96,7 +96,7 @@ export const Card: React.FunctionComponent<IProps> = (props) => {
     // Deterministic angle calculation using first two chars from content.
     // Regular randomness would cause the angle to change on each render.
     let content = (props.content || "").padEnd(2, " ");
-    const angle = ((content.charCodeAt(0) + content.charCodeAt(1)) % 11) - 5;
+    const angle = ((content.charCodeAt(0) + content.charCodeAt(1)) % 7) - 3;
 
     if (props.type === "outline") {
         return (
