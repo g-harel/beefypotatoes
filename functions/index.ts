@@ -1,14 +1,8 @@
-import admin from "firebase-admin";
 import * as functions from "firebase-functions";
 import {Endpoint} from "rickety";
 
 import {CreateGame, SubmitGame} from "../common/endpoints";
 import {createGameHandler, submitGameHandler} from "./handlers";
-
-// Is already initialized when running from dev server.
-if (!(global as any).FIREBASE_INITIALIZED) {
-    admin.initializeApp();
-}
 
 // Rickety tries to match path and method, which is not useful for functions.
 const forceHandle = <RQ, RS>(endpoint: Endpoint<RQ, RS>, handler: any): any => {

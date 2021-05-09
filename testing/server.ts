@@ -5,7 +5,6 @@ admin.initializeApp({
     credential: admin.credential.applicationDefault(),
     databaseURL: "https://cards-f5f97-default-rtdb.firebaseio.com",
 });
-(global as any).FIREBASE_INITIALIZED = true;
 
 import express from "express";
 import httpProxy from "http-proxy";

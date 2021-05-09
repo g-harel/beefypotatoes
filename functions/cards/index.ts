@@ -2,7 +2,7 @@ import {ICard, IGame} from "../../common/types";
 import {answerCards, promptCards} from "./data";
 
 const ANSWERS_PER_GAME = 4;
-const ANSWER_BUCKET_SIZE = 2; // Randomly pick answers from N neighbor buckets.
+const ANSWER_BUCKET_SIZE = 3; // Randomly pick answers from N neighbor buckets.
 
 if (answerCards.length < promptCards.length * ANSWERS_PER_GAME) {
     throw "The answer/prompt ration too low.";
