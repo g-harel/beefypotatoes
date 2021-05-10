@@ -2,12 +2,13 @@ import {ICard, IGame} from "../../common/types";
 import {answerCards, promptCards} from "./data";
 
 const ANSWERS_PER_GAME = 4;
-const ANSWER_BUCKET_SIZE = 3; // Randomly pick answers from N neighbor buckets.
+const ANSWER_BUCKET_SIZE = 5;
+const ANSWER_BUCKET_PER_GAME = 3; // Randomly pick answers from N neighbor buckets.
 
-if (answerCards.length < promptCards.length * ANSWERS_PER_GAME) {
+if (answerCards.length < promptCards.length * ANSWER_BUCKET_SIZE) {
     throw "The answer/prompt ration too low.";
 }
-if (promptCards.length < ANSWER_BUCKET_SIZE) {
+if (promptCards.length < ANSWER_BUCKET_PER_GAME) {
     throw "There are not enough prompts for additional buckets.";
 }
 
@@ -40,13 +41,13 @@ export const createGame = (excludeIDs: string[]): IGame => {
 
     // Pick answer cards.
     const answersBucket: ICard[] = [];
-    for (let i = 0; i < ANSWER_BUCKET_SIZE; i++) {
+    for (let i = 0; i < ANSWER_BUCKET_PER_GAME; i++) {
         let offsetPromptIndex = (promptIndex + i) % promptCards.length;
-        const offsetAnswerIndex = offsetPromptIndex * ANSWERS_PER_GAME;
+        const offsetAnswerIndex = offsetPromptIndex * ANSWER_BUCKET_SIZE;
         answersBucket.push(
             ...answerCards.slice(
                 offsetAnswerIndex,
-                offsetAnswerIndex + ANSWERS_PER_GAME,
+                offsetAnswerIndex + ANSWER_BUCKET_SIZE,
             ),
         );
     }

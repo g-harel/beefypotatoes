@@ -3,6 +3,7 @@ import {Endpoint} from "rickety";
 
 import {CreateGame, SubmitGame} from "../common/endpoints";
 import {createGameHandler, submitGameHandler} from "./handlers";
+import {clearCache} from "./signing";
 
 // Rickety tries to match path and method, which is not useful for functions.
 const forceHandle = <RQ, RS>(endpoint: Endpoint<RQ, RS>, handler: any): any => {
@@ -19,3 +20,6 @@ export const createGame = functions.https.onRequest(
 export const submitGame = functions.https.onRequest(
     forceHandle(SubmitGame, submitGameHandler),
 );
+export const clearTokenCache = functions.pubsub
+    .schedule("0 * * * *")
+    .onRun(clearCache);

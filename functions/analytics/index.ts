@@ -3,9 +3,9 @@ if (!admin.apps.length) admin.initializeApp();
 
 import {IGame} from "../../common/types";
 
-const db = admin.database();
-const outcomeRef = db.ref("outcomes");
+const outcomeRef = admin.database().ref("outcomes");
 
+// TODO don't submit to real db when dev.
 export const submit = async (game: IGame, choice: string): Promise<number> => {
     const promptRef = outcomeRef.child(game.prompt.id);
 
@@ -25,7 +25,7 @@ export const submit = async (game: IGame, choice: string): Promise<number> => {
                     return value;
                 }),
                 new Promise(async (resolve) => {
-                    reverseOutcomeRef.on("value", (snapshot) => {
+                    reverseOutcomeRef.once("value", (snapshot) => {
                         disagreeCount += snapshot.val() || 0;
                         resolve(null);
                     });
