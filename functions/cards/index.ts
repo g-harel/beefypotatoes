@@ -24,6 +24,8 @@ const pickRandom = <T>(count: number, items: T[]): T[] => {
 };
 
 export const createGame = (excludeIDs: string[]): IGame => {
+    console.log("START createGame");
+
     // Keep the last exclude IDs up to a maximum of half the number of prompts.
     const maxExcludeCount = Math.floor(promptCards.length / 2);
     const actualExcludedIDs = excludeIDs.slice(
@@ -31,6 +33,7 @@ export const createGame = (excludeIDs: string[]): IGame => {
     );
 
     // Pick a prompt that is not excluded.
+    console.log("START createGame pick prompt");
     let promptIndex: number;
     let prompt: ICard;
     while (true) {
@@ -40,6 +43,7 @@ export const createGame = (excludeIDs: string[]): IGame => {
     }
 
     // Pick answer cards.
+    console.log("START createGame pick answers");
     const answersBucket: ICard[] = [];
     for (let i = 0; i < ANSWER_BUCKET_PER_GAME; i++) {
         let offsetPromptIndex = (promptIndex + i) % promptCards.length;
@@ -51,5 +55,6 @@ export const createGame = (excludeIDs: string[]): IGame => {
             ),
         );
     }
+    console.log("START createGame return cards");
     return {prompt, answers: pickRandom(ANSWERS_PER_GAME, answersBucket)};
 };

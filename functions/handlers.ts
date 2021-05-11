@@ -4,7 +4,9 @@ import {createGame} from "./cards";
 import {sign, verify} from "./signing";
 
 export const createGameHandler = CreateGame.handler((_) => {
+    console.log("START createGameHandler");
     const game = createGame([]); // TODO exclude recent prompts.
+    console.log("START forceHandle return signed");
     return {game, token: sign(game)};
 });
 
