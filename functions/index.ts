@@ -7,13 +7,13 @@ import {clearCache} from "./signing";
 
 // Rickety tries to match path and method, which is not useful for functions.
 const forceHandle = <RQ, RS>(endpoint: Endpoint<RQ, RS>, handler: any): any => {
-    console.log("START forceHandle");
     return (req: any, res: any) => {
-        console.log("START forceHandle callback");
         req.method = endpoint.method;
         req.originalUrl = endpoint.path;
-        console.log("START forceHandle handler");
-        return handler(req, res);
+        return handler(req, res, (err: Error) => {
+            console.error(err);
+            res.sendStatus(500);
+        });
     };
 };
 

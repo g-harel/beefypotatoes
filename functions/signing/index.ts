@@ -22,7 +22,6 @@ const createTokenID = (token: string) => {
 };
 
 export const sign = (game: IGame): string => {
-    console.log("START sign");
     const value: IToken = {game};
     return jwt.sign(value, secret, {
         expiresIn: TOKEN_LIFETIME_SECONDS,
