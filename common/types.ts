@@ -8,6 +8,10 @@ export interface IGame {
     answers: ICard[];
 }
 
+export interface ICreateRequest {
+    excludePrompts: string[];
+}
+
 export interface ICreateResponse {
     game: IGame;
     token: string;

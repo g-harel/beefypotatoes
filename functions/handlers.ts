@@ -3,8 +3,8 @@ import {submit} from "./analytics";
 import {createGame} from "./cards";
 import {sign, verify} from "./signing";
 
-export const createGameHandler = CreateGame.handler((_) => {
-    const game = createGame([]); // TODO exclude recent prompts.
+export const createGameHandler = CreateGame.handler((settings) => {
+    const game = createGame(settings.excludePrompts); // TODO exclude recent prompts.
     return {game, token: sign(game)};
 });
 

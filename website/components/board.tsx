@@ -8,6 +8,8 @@ import {Card} from "./card";
 import {Counter} from "./counter";
 import {Logo} from "./logo";
 
+const EXCLUDED_PROMPT_KEY = "excl";
+
 const Wrapper = styled.div`
     align-items: center;
     display: flex;
@@ -55,6 +57,16 @@ const Stack = styled.div`
     }
 `;
 
+const updateExcludeList = (id?: string): string[] => {
+    const currentList = (localStorage.getItem(EXCLUDED_PROMPT_KEY) || "")
+        .split(",")
+        .filter(Boolean);
+    // Exclude list is overridden on the server (starting with the leftmost items) if it grows too large.
+    if (id !== undefined) currentList.push(id);
+    localStorage.setItem(EXCLUDED_PROMPT_KEY, currentList.join(","));
+    return currentList;
+};
+
 export const Board: React.FunctionComponent = () => {
     const [board, setBoard] = useState<ICreateResponse | null>(null);
     const [selection, setSelection] = useState<ICard | null>(null);
@@ -76,7 +88,12 @@ export const Board: React.FunctionComponent = () => {
         setBoard(null);
         setSelection(null);
         setResult(null);
-        CreateGame.call({}).then(setBoard);
+        CreateGame.call({excludePrompts: updateExcludeList()}).then(
+            (createResponse) => {
+                updateExcludeList(createResponse.game.prompt.id);
+                setBoard(createResponse);
+            },
+        );
     };
 
     // Load a game on initial render.
