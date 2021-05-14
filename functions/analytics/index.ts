@@ -5,8 +5,10 @@ import {IGame} from "../../common/types";
 
 const outcomeRef = admin.database().ref("outcomes");
 
-// TODO don't submit to real db when dev.
 export const submit = async (game: IGame, choice: string): Promise<number> => {
+    // Don't submit to real db when dev.
+    if (process.env.DEV !== undefined) return Math.random();
+
     const promptRef = outcomeRef.child(game.prompt.id);
 
     let agreeCount = 0;
