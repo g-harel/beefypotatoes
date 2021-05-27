@@ -35,8 +35,6 @@ const Base = styled.div<IBaseProps>`
     user-select: none;
     width: 12rem;
 
-    /* TODO logo ::after */
-
     ${({x, y, angle}) => css`
         transform: ${rotate(angle)} ${translate(x, y)};
     `}
@@ -45,6 +43,8 @@ const Base = styled.div<IBaseProps>`
 // Parent of both "Black" and "White" together.
 const Solid = styled(Base)<IBaseProps>`
     cursor: pointer;
+
+    /* TODO logo ::after */
 `;
 
 const Black = styled(Solid)`
@@ -92,6 +92,17 @@ const Wrapper = styled.div<IBaseProps>`
     }
 `;
 
+// Simple italics tag wrapping.
+// Can't handle nested tags.
+const bakeItalics = (text: string) => (
+    <>
+        {...text
+            .split(/<\/?i>/g)
+            .map((p, i) => (i % 2 ? <i>{p}</i> : <>{p}</>))}
+    </>
+);
+
+// TODO html entities (https://shripadk.github.io/react/docs/jsx-gotchas.html#html-entities)
 export const Card: React.FunctionComponent<IProps> = (props) => {
     // Deterministic angle calculation using first two chars from content.
     // Regular randomness would cause the angle to change on each render.
@@ -112,17 +123,13 @@ export const Card: React.FunctionComponent<IProps> = (props) => {
                 <Shadow angle={angle} x={-0.8} y={0.5} />
             </Collapse>
             {props.type === "black" ? (
-                <Black
-                    angle={angle}
-                    onClick={props.onClick}
-                    dangerouslySetInnerHTML={{__html: content}}
-                />
+                <Black angle={angle} onClick={props.onClick}>
+                    {bakeItalics(content)}
+                </Black>
             ) : (
-                <White
-                    angle={angle}
-                    onClick={props.onClick}
-                    dangerouslySetInnerHTML={{__html: content}}
-                />
+                <White angle={angle} onClick={props.onClick}>
+                    {bakeItalics(content)}
+                </White>
             )}
         </Wrapper>
     );
