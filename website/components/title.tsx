@@ -9,8 +9,16 @@ const Wrapper = styled.h1`
     width: 100%;
 `;
 
+const Feedback = styled.a`
+    color: #666;
+    font-size: 1rem;
+    text-decoration: none;
+    text-shadow: none;
+`;
+
 export const Title: React.FunctionComponent = () => (
     <Wrapper>
-        Humanity <br /> Against <br /> Cards
+        Humanity <br /> Against <br /> Cards <br />
+        <Feedback href="https://forms.gle/bZkEJEnfZQWF2rq29">Feedback</Feedback>
     </Wrapper>
 );
