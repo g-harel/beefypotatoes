@@ -92,17 +92,23 @@ const Wrapper = styled.div<IBaseProps>`
     }
 `;
 
-// Simple italics tag wrapping.
-// Can't handle nested tags.
-const bakeItalics = (text: string) => (
-    <>
-        {...text
-            .split(/<\/?i>/g)
-            .map((p, i) => (i % 2 ? <i>{p}</i> : <>{p}</>))}
-    </>
-);
+// Un-escapes non-nested italics and html entities.
+const bake = (text: string) => {
+    const parts = text.split(/<\/?i>/g);
+    const elements = parts.map((part, i) => {
+        const ultraBaked = part.replace(/&.*?;/g, (entity) => {
+            var doc = new DOMParser().parseFromString(entity, "text/html");
+            return doc.documentElement.textContent || "";
+        });
+        if (i % 2 === 1) {
+            return <i key={i}>{ultraBaked}</i>;
+        } else {
+            return <>{ultraBaked}</>;
+        }
+    });
+    return <>{...elements}</>;
+};
 
-// TODO html entities (https://shripadk.github.io/react/docs/jsx-gotchas.html#html-entities)
 export const Card: React.FunctionComponent<IProps> = (props) => {
     // Deterministic angle calculation using first two chars from content.
     // Regular randomness would cause the angle to change on each render.
@@ -124,11 +130,11 @@ export const Card: React.FunctionComponent<IProps> = (props) => {
             </Collapse>
             {props.type === "black" ? (
                 <Black angle={angle} onClick={props.onClick}>
-                    {bakeItalics(content)}
+                    {bake(content)}
                 </Black>
             ) : (
                 <White angle={angle} onClick={props.onClick}>
-                    {bakeItalics(content)}
+                    {bake(content)}
                 </White>
             )}
         </Wrapper>
