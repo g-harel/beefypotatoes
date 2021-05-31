@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 const Row = styled.div`
     display: flex;
     flex-wrap: wrap;
-    height: 18.8rem;
+    min-height: 18.8rem;
     justify-content: center;
 `;
 

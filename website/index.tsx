@@ -1,21 +1,24 @@
 import React, {Fragment} from "react";
 import ReactDOM from "react-dom";
-import styled, {createGlobalStyle} from "styled-components";
+import {createGlobalStyle} from "styled-components";
 
 import {Board} from "./components/board";
 import {Title} from "./components/title";
+import {Footer} from "./components/footer";
 
 // Global styles, similar to traditional css.
 const GlobalStyle = createGlobalStyle`
     html, body, #root {
         background-color: #232323;
         color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: min(calc(10px + 0.5vh), calc(10px + 0.5vw));
+        font-size: min(calc(10px + 0.5vh), calc(8px + 0.6vw));
         font-weight: 500;
-        height: 100%;
         margin: 0;
-        min-width: 36rem;
+        min-height: 100%;
         width: 100%;
     }
 
@@ -24,19 +27,12 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-`;
-
 const App: React.FunctionComponent = () => (
     <Fragment>
         <GlobalStyle />
-        <Wrapper>
-            <Title />
-            <Board />
-        </Wrapper>
+        <Title />
+        <Board />
+        <Footer />
     </Fragment>
 );
 
