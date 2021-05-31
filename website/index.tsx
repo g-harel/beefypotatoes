@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
         background-color: #232323;
         color: #ffffff;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 20px;
+        font-size: min(calc(10px + 0.5vh), calc(10px + 0.5vw));
         font-weight: 500;
         height: 100%;
         margin: 0;

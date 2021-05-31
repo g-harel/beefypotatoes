@@ -47,7 +47,7 @@ app.use((req, res, next) => {
         return;
     }
     console.log(`   ${req.url}`);
-    next();
+    setTimeout(next, Math.random() * 2000);
 });
 
 app.use(createGameHandler);
