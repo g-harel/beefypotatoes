@@ -1,4 +1,4 @@
-![](https://user-images.githubusercontent.com/9319710/120424089-557cfb00-c331-11eb-8679-d5c6bf4f7093.png)]
+![](https://user-images.githubusercontent.com/9319710/120424089-557cfb00-c331-11eb-8679-d5c6bf4f7093.png)
 
 # [humanityagainstcards.com](https://humanityagainstcards.com)
 
