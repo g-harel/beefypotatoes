@@ -5,9 +5,12 @@ import {IGame} from "../../common/types";
 
 const outcomeRef = admin.database().ref("outcomes");
 
-export const submit = async (game: IGame, choice: string): Promise<number> => {
+export const submit = async (
+    game: IGame,
+    choice: string,
+): Promise<[number, boolean]> => {
     // Don't submit to real db when dev.
-    if (process.env.DEV !== undefined) return Math.random();
+    if (process.env.DEV !== undefined) return [Math.random(), false];
 
     const promptRef = outcomeRef.child(game.prompt.id);
 
@@ -36,5 +39,9 @@ export const submit = async (game: IGame, choice: string): Promise<number> => {
         }),
     );
 
-    return agreeCount / (agreeCount + disagreeCount);
+    // None of the card combinations have data.
+    const isFirstResponse =
+        agreeCount === game.answers.length - 1 && disagreeCount === 0;
+
+    return [agreeCount / (agreeCount + disagreeCount), isFirstResponse];
 };

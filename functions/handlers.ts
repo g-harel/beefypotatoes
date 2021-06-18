@@ -12,8 +12,9 @@ export const submitGameHandler = SubmitGame.handler(async (outcome, _) => {
     // Incorrectly signed games are not allowed to be submitted.
     if (!(await verify(outcome.game, outcome.token))) {
         console.log(`Invalid game submitted: ${outcome.token}`);
-        return {similarity: 0};
+        return {similarity: 0, isFirstResponse: false};
     }
 
-    return {similarity: await submit(outcome.game, outcome.choice)};
+    const [similarity, isFirstResponse] = await submit(outcome.game, outcome.choice);
+    return {similarity, isFirstResponse};
 });

@@ -25,4 +25,5 @@ export interface ISubmitRequest {
 
 export interface ISubmitResponse {
     similarity: number;
+    isFirstResponse: boolean;
 }
