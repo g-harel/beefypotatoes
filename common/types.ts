@@ -10,6 +10,7 @@ export interface IGame {
 
 export interface ICreateRequest {
     excludePrompts: string[];
+    demo: boolean
 }
 
 export interface ICreateResponse {
