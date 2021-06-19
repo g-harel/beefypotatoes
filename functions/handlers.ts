@@ -15,6 +15,9 @@ export const submitGameHandler = SubmitGame.handler(async (outcome, _) => {
         return {similarity: 0, isFirstResponse: false};
     }
 
-    const [similarity, isFirstResponse] = await submit(outcome.game, outcome.choice);
+    const [similarity, isFirstResponse] = await submit(
+        outcome.game,
+        outcome.choice,
+    );
     return {similarity, isFirstResponse};
 });

@@ -110,7 +110,21 @@ export const Board: React.FunctionComponent = () => {
     }
 
     let bottomRowContents: React.ReactNode = null;
-    if (result) {
+    if (result && result.isFirstResponse) {
+        bottomRowContents = (
+            <Row>
+                <Result>
+                    Nailed it...
+                    <Subtitle>
+                        You're the first to vote on this matchup
+                    </Subtitle>
+                    <Button onClick={reset}>
+                        again
+                    </Button>
+                </Result>
+            </Row>
+        );
+    } else if (result) {
         bottomRowContents = (
             <Row>
                 <Result>
