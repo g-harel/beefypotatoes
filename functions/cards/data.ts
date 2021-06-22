@@ -11,8 +11,61 @@ export interface Set {
 // prettier-ignore
 export const sets = {
     demo: {
-        prompts: [],
-        answers: [],
+        prompts: [
+            {id: "4427E314-4364-D466-F596-AF18A9A28A25", text: `_? No.`},
+            {id: "917E735B-0303-F1D2-8AB6-CF2D36EEFD43", text: `Beep beep! _ coming through!`},
+            {id: "6C6F7CFF-080F-63D8-C78E-4CE2031BDAFA", text: `Bow before me, for I am the Queen of _!`},
+            {id: "90404CA2-A737-B526-2E02-FC4DEB3AF237", text: `Class, pay close attention. I will now demonstrate the physics of _.`},
+            {id: "1F9F2E56-6FAB-6AB3-D639-D769BBC23936", text: `Coming soon! Batman vs. _.`},
+            {id: "A2813A55-865A-11AA-15E5-C1B5A757CB19", text: `I lost my arm in a _ accident.`},
+            {id: "D0C2F8A3-357A-1DB6-CFD3-81C27910C1FC", text: `Mom? You have to come pick me up! There's _ at this party.`},
+            {id: "67A31B4E-25B1-7B29-0B29-559C5A51D91A", text: `My favorite book is "The Amazing Adventures of _."`},
+            {id: "E9F19642-5E24-A187-746B-E6FB5E97E80B", text: `Next from J.K. Rowling: Harry Potter and the chamber of _.`},
+            {id: "70A98BB1-80DE-157A-D42C-7CC177146C53", text: `Outback Steakhouse: No rules. Just _.`},
+        ],
+        answers: [
+            {id: "3C7A0B68-0B1A-07A8-609F-0113D2E08952", text: `14 cheeseburgers, 6 large fries, and a medium Sprite.`},
+            {id: "A0F372F2-B748-675F-155E-D119E3AEEE3A", text: `A baby with a full mustache.`},
+            {id: "FAE5B4F4-28F1-8DFE-74C7-4A9F4E78C1AC", text: `A corn dog.`},
+            {id: "F8E79B11-8184-7570-3DF8-C489EBF30C08", text: `A flamethrower.`},
+            {id: "5FE7FC9A-EAC7-8A47-D15F-3B1B30B1C62F", text: `A scoop of tuna.`},
+            {id: "3C59B78E-15DB-48D7-7E94-4849E4025259", text: `A screaming soccer dad.`},
+            {id: "E1453DF9-E46E-360F-728B-F85DDA1B9CE8", text: `A super angry cat I found outside.`},
+            {id: "20B32352-88BF-371D-F8E3-4B29FBB48E20", text: `An order of mozzarella sticks.`},
+            {id: "9358DB07-C8D2-124D-FD0D-7D8992460B2A", text: `An owl that hates you.`},
+            {id: "D1566772-A1E6-AAFD-1C65-037CA4F795E4", text: `Beer.`},
+            {id: "37534189-7EB3-6945-ECDE-57E63DD2E619", text: `Being famous on YouTube.`},
+            {id: "9FDBAE02-59BD-2C8A-BC23-3231C4BAF414", text: `Being French, hoh-hoh-hoh!`},
+            {id: "3612485E-16C3-34FD-D268-9E12A96A29B1", text: `Being super serious right now.`},
+            {id: "C6E621CF-7857-D22B-5DD8-A394E49F8AA3", text: `Bench pressing a horse.`},
+            {id: "55142BE0-A3CE-FF5B-BDFF-452DD5DF56ED", text: `Cavities.`},
+            {id: "AAC43654-E5E3-0883-30C4-D175027B8D57", text: `Cheeto fingers.`},
+            {id: "DDE654CE-89B6-66A3-81A4-2797FAD4A26E", text: `Coffee.`},
+            {id: "104ED27A-4C70-D6B2-33AE-F619543FAF2E", text: `Doing karate.`},
+            {id: "65004A8D-66D7-126C-2EC7-B849BC425C0F", text: `Elegant party hats.`},
+            {id: "1FE6263F-F95D-395B-6077-B9CE76E259E8", text: `Flamin' Hot Cheetos.`},
+            {id: "D3A7FB1B-A239-5D23-9A6E-BEDEF8B47613", text: `Floating through the void of space and time.`},
+            {id: "C7B79E2B-4C26-7DB8-161C-9FDB7230C175", text: `Fortnite.`},
+            {id: "304926D6-3F94-B41D-06DB-4EB53A32DC15", text: `Horrible allergies.`},
+            {id: "4F3671A2-7647-EBEC-7235-E9CFB6763F9C", text: `Nothing. Absolutely nothing.`},
+            {id: "84FCDD07-FC97-ADE9-3E2B-229CFE5722DB", text: `Nunchucks.`},
+            {id: "9FEF15EE-A643-8FBC-171B-D3364955B2F5", text: `Peer pressure.`},
+            {id: "A81DFFAC-CB3F-3F52-7E47-2B5590FF7CAB", text: `Pizza.`},
+            {id: "EE2D13B9-B529-5AD6-14DD-31159258D3DA", text: `Sharks.`},
+            {id: "4CFE5BD2-B638-687B-2E8A-2B7E0F8B4886", text: `Shrek.`},
+            {id: "B3682FE7-1435-114D-B806-624C04E05E93", text: `Social media.`},
+            {id: "376FDA9F-C37C-807F-7AB6-8BBB373193F6", text: `Soup.`},
+            {id: "0632F633-1A52-6FE8-4056-30854606D9E1", text: `Space lasers.`},
+            {id: "867954DD-7BCC-93E3-2CA7-F7C1FCF189B2", text: `Spending my parent's hard-earned money.`},
+            {id: "774D367C-40DA-9613-48E6-9A359795CDB8", text: `Spider-Man.`},
+            {id: "5896EFBC-6749-63EF-4EF6-CE935F6DE2C8", text: `Stuff.`},
+            {id: "B012FFFE-ACBC-D04B-B18E-3A13BE36ECE1", text: `Swords.`},
+            {id: "32C6F90A-910D-73F4-53A5-384DBABA56D1", text: `The beautiful potato.`},
+            {id: "1C4B39C0-C7BB-AEA6-1636-04678697BBF3", text: `This stupid game.`},
+            {id: "8B951845-099E-5A7E-D954-0CFB9E8A28BF", text: `Thousands of lasagna`},
+            {id: "DFFFB053-3CF9-80E3-9CED-0EE2F2DCA07F", text: `Triangles.`},
+            {id: "76F5D9AE-133A-79F0-BE4F-EE8BBCC2890F", text: `Trying to catch that dang raccoon.`},
+        ],
     },
     base: {
         prompts: [
@@ -624,3 +677,4 @@ export const sets = {
 
 // Type assertion.
 const _: Record<string, Set> = sets;
+if (Math.random() < 0) console.log(_);
