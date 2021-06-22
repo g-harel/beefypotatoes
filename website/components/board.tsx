@@ -118,9 +118,7 @@ export const Board: React.FunctionComponent = () => {
                     <Subtitle>
                         You're the first to vote on this matchup
                     </Subtitle>
-                    <Button onClick={reset}>
-                        again
-                    </Button>
+                    <Button onClick={reset}>again</Button>
                 </Result>
             </Row>
         );

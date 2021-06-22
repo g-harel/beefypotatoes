@@ -1,5 +1,5 @@
 import {ICard, IGame} from "../../common/types";
-import {base, Set} from "./data";
+import {sets, Set} from "./data";
 
 const ANSWERS_PER_GAME = 4;
 const ANSWER_BUCKET_SIZE = 5;
@@ -8,14 +8,13 @@ const ANSWER_BUCKET_PER_GAME = 3; // Randomly pick answers from N neighbor bucke
 const checkSets = (sets: Set[]) => {
     for (const set of sets) {
         if (set.answers.length < set.prompts.length * ANSWER_BUCKET_SIZE) {
-            throw "The answer/prompt ration too low for set: " + set.name;
+            throw "The answer/prompt ration too low";
         }
         if (set.prompts.length < ANSWER_BUCKET_PER_GAME) {
-            throw "There are not enough prompts for additional buckets for set: " + set.name;
+            throw "There are not enough prompts for additional buckets";
         }
     }
-}
-checkSets([base]); // TODO check after picking which to include.
+};
 
 const pickRandom = <T>(count: number, items: T[]): T[] => {
     const pickedIDs: Record<number, true> = {};
@@ -28,10 +27,15 @@ const pickRandom = <T>(count: number, items: T[]): T[] => {
         .sort(() => Math.random() - 0.5);
 };
 
-// TODO switch between sets.
-export const createGame = (excludeIDs: string[]): IGame => {
+export const createGame = (
+    excludeIDs: string[],
+    setName: keyof typeof sets,
+): IGame => {
+    const set = sets[setName];
+    checkSets([set]);
+
     // Keep the last exclude IDs up to a maximum of half the number of prompts.
-    const maxExcludeCount = Math.floor(base.prompts.length / 2);
+    const maxExcludeCount = Math.floor(set.prompts.length / 2);
     const actualExcludedIDs = excludeIDs.slice(
         Math.max(0, excludeIDs.length - maxExcludeCount),
     );
@@ -40,18 +44,18 @@ export const createGame = (excludeIDs: string[]): IGame => {
     let promptIndex: number;
     let prompt: ICard;
     while (true) {
-        promptIndex = Math.floor(Math.random() * base.prompts.length);
-        prompt = base.prompts[promptIndex];
+        promptIndex = Math.floor(Math.random() * set.prompts.length);
+        prompt = set.prompts[promptIndex];
         if (!actualExcludedIDs.includes(prompt.id)) break;
     }
 
     // Pick answer cards.
     const answersBucket: ICard[] = [];
     for (let i = 0; i < ANSWER_BUCKET_PER_GAME; i++) {
-        let offsetPromptIndex = (promptIndex + i) % base.prompts.length;
+        let offsetPromptIndex = (promptIndex + i) % set.prompts.length;
         const offsetAnswerIndex = offsetPromptIndex * ANSWER_BUCKET_SIZE;
         answersBucket.push(
-            ...base.answers.slice(
+            ...set.answers.slice(
                 offsetAnswerIndex,
                 offsetAnswerIndex + ANSWER_BUCKET_SIZE,
             ),
