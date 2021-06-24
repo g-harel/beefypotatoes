@@ -11,7 +11,7 @@ export const submit = async (
 ): Promise<[number, boolean]> => {
     // Don't submit to real db when dev.
     if (process.env.DEV !== undefined)
-        return [Math.random(), Math.random() > 0.3];
+        return [Math.random(), Math.random() < 0.3];
 
     const promptRef = outcomeRef.child(game.prompt.id);
 

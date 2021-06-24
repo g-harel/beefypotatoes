@@ -12,16 +12,14 @@ export interface Set {
 export const sets = {
     demo: {
         prompts: [
-            {id: "4427E314-4364-D466-F596-AF18A9A28A25", text: `_? No.`},
-            {id: "917E735B-0303-F1D2-8AB6-CF2D36EEFD43", text: `Beep beep! _ coming through!`},
-            {id: "6C6F7CFF-080F-63D8-C78E-4CE2031BDAFA", text: `Bow before me, for I am the Queen of _!`},
-            {id: "90404CA2-A737-B526-2E02-FC4DEB3AF237", text: `Class, pay close attention. I will now demonstrate the physics of _.`},
-            {id: "1F9F2E56-6FAB-6AB3-D639-D769BBC23936", text: `Coming soon! Batman vs. _.`},
-            {id: "A2813A55-865A-11AA-15E5-C1B5A757CB19", text: `I lost my arm in a _ accident.`},
-            {id: "D0C2F8A3-357A-1DB6-CFD3-81C27910C1FC", text: `Mom? You have to come pick me up! There's _ at this party.`},
-            {id: "67A31B4E-25B1-7B29-0B29-559C5A51D91A", text: `My favorite book is "The Amazing Adventures of _."`},
-            {id: "E9F19642-5E24-A187-746B-E6FB5E97E80B", text: `Next from J.K. Rowling: Harry Potter and the chamber of _.`},
-            {id: "70A98BB1-80DE-157A-D42C-7CC177146C53", text: `Outback Steakhouse: No rules. Just _.`},
+            {id: "4427E314-4364-D466-F596-AF18A9A28A25", text: `____? No.`},
+            {id: "917E735B-0303-F1D2-8AB6-CF2D36EEFD43", text: `Beep beep! ____ coming through!`},
+            {id: "6C6F7CFF-080F-63D8-C78E-4CE2031BDAFA", text: `Bow before me, for I am the Queen of ____!`},
+            {id: "90404CA2-A737-B526-2E02-FC4DEB3AF237", text: `Class, pay close attention. I will now demonstrate the physics of ____.`},
+            {id: "A2813A55-865A-11AA-15E5-C1B5A757CB19", text: `I lost my arm in a ____ accident.`},
+            {id: "D0C2F8A3-357A-1DB6-CFD3-81C27910C1FC", text: `Mom? You have to come pick me up! There's ____ at this party.`},
+            {id: "67A31B4E-25B1-7B29-0B29-559C5A51D91A", text: `My favorite book is "The Amazing Adventures of ____."`},
+            {id: "70A98BB1-80DE-157A-D42C-7CC177146C53", text: `Outback Steakhouse: No rules. Just ____.`},
         ],
         answers: [
             {id: "3C7A0B68-0B1A-07A8-609F-0113D2E08952", text: `14 cheeseburgers, 6 large fries, and a medium Sprite.`},

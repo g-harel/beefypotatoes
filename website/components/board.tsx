@@ -88,12 +88,13 @@ export const Board: React.FunctionComponent = () => {
         setBoard(null);
         setSelection(null);
         setResult(null);
-        CreateGame.call({excludePrompts: updateExcludeList()}).then(
-            (createResponse) => {
-                updateExcludeList(createResponse.game.prompt.id);
-                setBoard(createResponse);
-            },
-        );
+        CreateGame.call({
+            excludePrompts: updateExcludeList(),
+            demo: !!window.location.pathname.match(/^\/?demo/g),
+        }).then((createResponse) => {
+            updateExcludeList(createResponse.game.prompt.id);
+            setBoard(createResponse);
+        });
     };
 
     // Load a game on initial render.
@@ -116,7 +117,7 @@ export const Board: React.FunctionComponent = () => {
                 <Result>
                     Nailed it...
                     <Subtitle>
-                        You're the first to vote on this matchup
+                        You were the first to vote on this matchup
                     </Subtitle>
                     <Button onClick={reset}>again</Button>
                 </Result>

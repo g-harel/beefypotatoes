@@ -31,6 +31,7 @@ export const createGame = (
     excludeIDs: string[],
     setName: keyof typeof sets,
 ): IGame => {
+    // Check sets every time to allow combining.
     const set = sets[setName];
     checkSets([set]);
 
@@ -50,6 +51,7 @@ export const createGame = (
     }
 
     // Pick answer cards.
+    // TODO make compatible with multiple sets. (deterministically randomize index)
     const answersBucket: ICard[] = [];
     for (let i = 0; i < ANSWER_BUCKET_PER_GAME; i++) {
         let offsetPromptIndex = (promptIndex + i) % set.prompts.length;
