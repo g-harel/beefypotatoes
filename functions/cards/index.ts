@@ -3,7 +3,7 @@ import {sets, Set} from "./data";
 
 const ANSWERS_PER_GAME = 4;
 const ANSWER_BUCKET_SIZE = 5;
-const ANSWER_BUCKET_PER_GAME = 3; // Randomly pick answers from N neighbor buckets.
+const ANSWER_BUCKET_PER_GAME = 2; // Randomly pick answers from N neighbor buckets.
 
 const checkSets = (sets: Set[]) => {
     for (const set of sets) {
