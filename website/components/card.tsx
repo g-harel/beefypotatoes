@@ -103,7 +103,7 @@ const bake = (text: string) => {
         if (i % 2 === 1) {
             return <i key={i}>{ultraBaked}</i>;
         } else {
-            return <>{ultraBaked}</>;
+            return <span key={i}>{ultraBaked}</span>;
         }
     });
     return <>{...elements}</>;
