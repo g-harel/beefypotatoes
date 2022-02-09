@@ -16,7 +16,7 @@ const FILE_PORT = process.env.FILE_PORT || 1234;
 const REMOTE_FUNC = process.env.REMOTE_FUNC === "true";
 
 const FILE_PROXY = "http://localhost:" + FILE_PORT;
-const REMOTE_FUNC_PROXY = "http://humanityagainstcards.com";
+const REMOTE_FUNC_PROXY = "http://beefypotatoes.com";
 
 const app = express();
 const proxy = httpProxy.createProxy();

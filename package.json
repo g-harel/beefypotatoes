@@ -1,5 +1,5 @@
 {
-    "name": "humanityagainstcards",
+    "name": "beefypotatoes",
     "scripts": {
         "build": "run-s build:functions:* build:website:*",
         "deploy": "run-s deploy:*",
@@ -11,7 +11,7 @@
         "build:functions:dir": "mkdir -p .functions",
         "build:functions:package": "cpy functions/package.json .functions",
         "build:functions:bundle": "microbundle build --entry functions/index.ts --output .functions --target node",
-        "build:functions:index": "cpy .functions/humanityagainstcards.js .functions --rename index.js",
+        "build:functions:index": "cpy .functions/beefypotatoes.js .functions --rename index.js",
         "deploy:functions": "firebase deploy --only functions",
         "deploy:website": "firebase deploy --only hosting",
         "dev:server": "cross-env PORT=3001 FILE_PORT=3002 REMOTE_FUNC=false DEV=true ts-node-dev testing/server",

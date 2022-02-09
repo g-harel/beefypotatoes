@@ -546,7 +546,7 @@ export const sets = {
             {id: "5D9CB5E8-A42A-4E95-C572-87A77EC6CF2F", text: `The Underground Railroad.`},
             {id: "EA7800C8-60B3-BD1E-F1F5-6F1E476A8589", text: `Penis envy.`},
             {id: "A4450C80-C352-F1B8-ACDA-5533A15DDA42", text: `Repression.`},
-            {id: "CA03A9E4-8760-B03E-B354-BC7C2D0836E9", text: `Cards Against Humanity.`},
+            {id: "CA03A9E4-8760-B03E-B354-BC7C2D0836E9", text: `Beefy Potatoes.`},
             {id: "EC43E930-189E-B297-D9BD-91BBF2F876A2", text: `The Hustle.`},
             {id: "8E918A46-ADB0-5D14-DEA6-ED1B7D6856E7", text: `Jerking off into a pool of children's tears.`},
             {id: "02B4BD3F-824E-2120-199A-27EC554EA429", text: `Heteronormativity.`},
