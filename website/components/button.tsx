@@ -19,7 +19,7 @@ const Wrapper = styled.div<IProps>`
     user-select: none;
 
     ${({color, hide}) => css`
-        color: ${color || "#444"};
+        color: ${color || "#e9d181"};
         opacity: ${hide ? 0 : 1};
         pointer-events: ${hide ? "none" : "all"};
     `}

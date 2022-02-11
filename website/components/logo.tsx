@@ -11,7 +11,7 @@ const Wrapper = styled.div<IProps>`
     height: 0;
 
     ${({color, scale}) => css`
-        color: ${color || "white"};
+        color: ${color || "#e9d181"};
         transform: scale(${scale || 1}) translateY(-5rem);
     `}
 `;
@@ -46,9 +46,10 @@ const slideOutline = keyframes`
     100% {transform: rotate(-20deg) translateX(-2.666rem)}
 `;
 
-const Outline = styled(Base)<IProps>`
+const Alt = styled(Base)<IProps>`
     animation: 2s ${slideOutline} ease infinite;
-    border: 0.6rem solid currentColor;
+    background-color: currentColor;
+    opacity: 0.7;
 
     ${({isLoading}) => css`
         animation-play-state: ${isLoading ? "initial" : "paused"};
@@ -64,6 +65,6 @@ export const Logo: React.FunctionComponent<IProps> = (props) => (
         <Collapse>
             <Full {...props} />
         </Collapse>
-        <Outline {...props} />
+        <Alt {...props} />
     </Wrapper>
 );

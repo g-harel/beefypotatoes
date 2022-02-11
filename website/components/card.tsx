@@ -48,22 +48,22 @@ const Solid = styled(Base)<IBaseProps>`
 `;
 
 const Black = styled(Solid)`
-    background-color: #000;
-    color: #fff;
+    background-color: #1b1813;
+    color: #e9d181;
 `;
 
 const White = styled(Solid)`
-    background-color: #fff;
-    color: #000;
+    background-color: #e9d181;
+    color: #1b1813;
 `;
 
 const Shadow = styled(Base)`
-    background-color: #000;
+    background-color: #1b1813;
     opacity: 0.2;
 `;
 
 const Outline = styled(Base)`
-    border: 0.1rem dashed #fff;
+    border: 0.1rem dashed #e9d181;
     opacity: 0.1;
     transform: scale(1.02) rotate(0);
 `;

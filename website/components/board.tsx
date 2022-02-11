@@ -104,7 +104,7 @@ export const Board: React.FunctionComponent = () => {
         return (
             <Wrapper>
                 <div style={{paddingTop: "10rem"}}>
-                    <Logo isLoading scale={0.3} color="#444" />
+                    <Logo isLoading scale={0.3} color="#e9d181" />
                 </div>
             </Wrapper>
         );
@@ -143,7 +143,7 @@ export const Board: React.FunctionComponent = () => {
         bottomRowContents = (
             <Row>
                 <Result>
-                    <Logo isLoading scale={0.3} color="#444" />
+                    <Logo isLoading scale={0.3} color="#e9d181" />
                 </Result>
             </Row>
         );

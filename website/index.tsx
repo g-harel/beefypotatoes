@@ -9,12 +9,12 @@ import {Footer} from "./components/footer";
 // Global styles, similar to traditional css.
 const GlobalStyle = createGlobalStyle`
     html, body, #root {
-        background-color: #232323;
-        color: #ffffff;
+        background-color: #241911;
+        color: #e9d181;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', 'monospace';
         font-size: min(calc(10px + 0.5vh), calc(8px + 0.6vw));
         font-weight: 500;
         margin: 0;

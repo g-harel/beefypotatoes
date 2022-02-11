@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.a`
     align-self: center;
-    color: #666;
+    color: #e9d181;
     font-size: 0.9rem;
     font-weight: bold;
     margin: 3rem;
