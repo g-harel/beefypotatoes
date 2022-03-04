@@ -26,14 +26,18 @@ const rotate = (angle: number = 0, bounce: number = 0) => {
 };
 
 const Base = styled.div<IBaseProps>`
-    border-radius: 0.6rem;
+    align-items: center;
+    border-radius: 2rem;
+    display: flex;
     font-size: 0.9rem;
     font-weight: 600;
-    height: 16rem;
+    height: 14rem;
+    justify-content: center;
     padding: 0.9rem 1.3rem;
+    text-align: center;
     transition: transform 0.1s ease;
     user-select: none;
-    width: 12rem;
+    width: 14rem;
 
     ${({x, y, angle}) => css`
         transform: ${rotate(angle)} ${translate(x, y)};
@@ -48,8 +52,8 @@ const Solid = styled(Base)<IBaseProps>`
 `;
 
 const Black = styled(Solid)`
-    background-color: #1b1813;
-    color: #e9d181;
+    background-color: #e9d18181;
+    color: #1b1813;
 `;
 
 const White = styled(Solid)`
