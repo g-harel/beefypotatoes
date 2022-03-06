@@ -20,7 +20,7 @@ const Base = styled.div`
     border-radius: 1rem;
     box-sizing: border-box;
     height: 10rem;
-    width: 6.666rem;
+    width: 10rem;
 `;
 
 const slideFull = keyframes`

@@ -27,9 +27,9 @@ const rotate = (angle: number = 0, bounce: number = 0) => {
 
 const Base = styled.div<IBaseProps>`
     align-items: center;
-    border-radius: 2rem;
+    border-radius: 1.2rem;
     display: flex;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     height: 14rem;
     justify-content: center;
