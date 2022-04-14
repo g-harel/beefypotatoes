@@ -38,7 +38,7 @@ const Result = styled.div`
 `;
 
 const Subtitle = styled.div`
-    color: #444;
+    color: #e9d18181;
     font-size: 1.6rem;
     height: 4rem;
     text-align: center;
